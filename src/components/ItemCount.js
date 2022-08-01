@@ -6,6 +6,8 @@ const Carrito = ({ stock, initial, onAdd }) => {
   function mas() {
     if (count < stock) {
       setCount(count + 1);
+    } else {
+      alert("No disponibles")
     }
   }
   function menos() {
@@ -29,8 +31,8 @@ const Carrito = ({ stock, initial, onAdd }) => {
         </div>
       </div>
       <div className="btnAgregar">
-        <button className="btn btn-primary agregar" onClick={onAdd} >
-          Agregar
+        <button className="btn btn-primary agregar" onClick={() => onAdd(count)} >
+          Agregar al carrito
         </button>
       </div>
     </div>

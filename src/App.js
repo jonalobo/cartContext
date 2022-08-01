@@ -6,6 +6,7 @@ import NotFound from './views/NotFound';
 import { useState } from 'react';
 import Layout from './views/Layout';
 import Cart from './views/Cart';
+import { CartProvider } from "./context/CartContext";
 
 function App() {
   const [cambio, setcambio] = useState('light')
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <CartProvider>
       <div data-theme={cambio}>
         <label  class="swap swap-rotate cambio">
           <input type="checkbox" />
@@ -35,6 +37,7 @@ function App() {
             </Route> 
           </Routes>
       </div>
+      </CartProvider>
     </BrowserRouter>
   );
 }

@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom'
-const CartWidget = (props) => {
+import { useContext } from "react";
+import CartContext from "../context/CartContext";
+const CartWidget = () => {
+
+  const { totalItems, totalPrice} = useContext(CartContext)
+
   return (
     <div className="navbar bg-base-100 flex-end">
       <div className="flex-end">
@@ -21,7 +26,7 @@ const CartWidget = (props) => {
                 />
               </svg>
               <span className="badge badge-sm indicator-item">
-                {props.cantidad}
+                {totalItems}
               </span>
             </div>
           </label>
@@ -30,8 +35,8 @@ const CartWidget = (props) => {
             className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
           >
             <div className="card-body">
-              <span className="font-bold text-lg">{props.cantidad}</span>
-              <span className="text-info">Subtotal: ${props.cantidad}</span>
+              <span className="font-bold text-lg">{totalItems}</span>
+              <span className="text-info">Subtotal: ${totalPrice}</span>
               <div className="card-actions">
                 <button className="btn btn-primary btn-block">
                   <Link to='cart'>Ver carrito</Link>

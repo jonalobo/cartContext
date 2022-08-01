@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link } from 'react-router-dom'
 import "../css/ItemDetail.css";
 import ItemCount from "./ItemCount";
+import CartContext from '../context/CartContext';
+
 const ItemDetail = (props) => {
   const [btn, setBtn] = useState(true)
   const {thumbnail,price,title,description} = props.producto
+
+  const {addItem} = useContext(CartContext)
+
+  console.log(props)
+  function onAddEvent(n) {
+    addItem({...props.producto, quantity: n}); 
+} 
   
   function cambiarbtn() {
     setBtn(<button class="btn btn-primary" onClick={cambiarbtn}>Agregar</button>)
@@ -28,8 +37,9 @@ const ItemDetail = (props) => {
                 {btn ? (<ItemCount 
                 stock={4}
                 initial={1}
-                onAdd={()=>{
-                  alert('Este producto ha sido agregado al carrito')
+                onAdd={(e)=>{
+                  alert(`${e} productos ha sido agregado al carrito`)
+                  onAddEvent(e)
                   setBtn(false)
                 }}
                 />) : (<Link to='/cart' className="btn btn-primary">Ver</Link>)}
